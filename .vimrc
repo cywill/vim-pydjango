@@ -1,4 +1,5 @@
 set nocompatible " be iMproved
+set t_Co=256
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
@@ -46,6 +47,9 @@ Bundle "vim-scripts/indentpython.vim"
 " Versioning System
 Bundle 'tpope/vim-fugitive'
 
+" Status Bar CG
+Bundle 'bling/vim-airline'
+
 filetype plugin indent on     " required! 
 
 
@@ -88,7 +92,7 @@ filetype plugin indent on     " required!
 set history=1000
 
 " Ignore some file
-set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore=*.swp,*.bak,*.pyc,*.class 
 
 " Set to auto read when a file is changed from the outside
 set autowrite
@@ -107,6 +111,9 @@ map <leader>e :e! ~/.vimrc<cr>
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
+
+" Execute current file 
+map <leader>r :!%:p<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -175,7 +182,14 @@ if has("gui_running")
   set lines=43
   set co=87
 endif
-  
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Airline setup from gnuliux mag n°172 p63
+" => Package bling/vim-airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set laststatus=2
+let g:airline_powerline_fonts=1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -233,6 +247,7 @@ set title                     " show title in console title bar
 set wildmenu                  " Menu completion in command mode on <Tab>
 set pastetoggle=<F3>          " Press F3 for toggle paste mode
 set cursorline
+:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white
 set colorcolumn=80 " Mark 80th column with a red line
 
 " Taken From http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns
